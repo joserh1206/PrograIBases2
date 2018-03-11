@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu_estudiante</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+    <link rel="stylesheet" href="assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div>
+        <div class="header-dark">
+            <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+                <div class="container"><a class="navbar-brand" href="#">Sistema de Matrícula</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div
+                        class="collapse navbar-collapse" id="navcol-1">
+                        <form class="form-inline mr-auto" target="_self">
+                            <div class="form-group"><label for="search-field"></label><span></span></div>
+                        </form><span class="navbar-text"></span><a class="btn btn-light action-button" role="button" href="#" id="btn_salir">Salir</a></div>
+        </div>
+        </nav>
+        <div class="container hero">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <h1 class="text-center">Matrícular</h1>
+                    <div class="form-group">
+                        <form><input class="form-control" type="text" placeholder="Carné " id="carne_input"></form>
+                        <form style="margin-top:10px;"><select class="form-control" id="select_institution"><optgroup label="Institución"><option value="12" selected="">Institución 1</option><option value="13">Institución 2</option><option value="14">Institución 3</option></optgroup></select></form>
+                        <form
+                            style="margin-top:10px;"><select class="form-control" id="select_escuela"><optgroup label="Escuela"><option value="12" selected="">Escuela 1</option><option value="13">Escuela 2</option><option value="14">Escuela 3</option></optgroup></select></form>
+                            <form
+                                style="margin-top:10px;"><select class="form-control" id="select_curso"><optgroup label="Curso"><option value="12" selected="">Curso 1</option><option value="13">Curso 2</option><option value="14">Curso 3</option></optgroup></select></form>
+                                <form style="margin-top:10px;"><select class="form-control" id="select_grupo"><optgroup label="Grupo"><option value="12" selected="">Grupo 1</option><option value="13">Grupo 2</option></optgroup></select></form>
+                                <form style="margin-top:10px;"><button class="btn btn-outline-primary btn-block" type="button" id="btn_matricular" style="color:rgb(255,255,255);">Matrícular</button></form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
