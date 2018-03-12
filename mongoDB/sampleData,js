@@ -143,3 +143,34 @@ db.cursos.insertOne({
   "codigoMateria":2,
   "grupos":[0,1]
 })
+
+db.profesores.insertOne(
+{
+  "_id":4,
+  "profesor":"Dimitri",
+  "codigoEsc":2 //ID escuela
+})
+
+
+
+db.grupos.insert([
+{
+  "_id":2,
+  "codigoProfe":4,
+  "horario":"L_7:30-9:20;M_7:30-9:20",
+  "estudiantes":[0]
+},
+{
+  "_id":3,
+  "codigoProfe":4,
+  "horario":"M_13:30-15:20;V_13:30-15:20",
+  "estudiantes":[2]
+}])
+
+db.cursos.insertOne({
+  "_id":1,
+  "semestre":2,
+  "anno":2017,
+  "codigoMateria":3,//ID materia que da este curso
+  "grupos":[2,3]//ID Grupos que pertenecen a este curso
+})
