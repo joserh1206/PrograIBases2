@@ -64,23 +64,31 @@ db.materias.insert([
 db.profesores.insert([
 {
   "_id":0,
+  "carnet":2018000000,
   "profesor":"Jose Dolores Navas Su",
-  "codigoEsc":0
+  "codigoEsc":0,
+  "password":"12345a"
 },
 {
   "_id":1,
+  "carnet":2018000001,
   "profesor":"Jaime Solano Soto",
-  "codigoEsc":0
+  "codigoEsc":0,
+  "password":"12345b"
 },
 {
   "_id":2,
+  "carnet":2018000002,
   "profesor":"Kirstein Gatjens Soto",
-  "codigoEsc":0
+  "codigoEsc":0,
+  "password":"12345c"
 },
 {
   "_id":3,
+  "carnet":2018000003,
   "profesor":"Ivannia Hasbum",
-  "codigoEsc":1
+  "codigoEsc":1,
+  "password":"12345d"
 }])
 
 db.estudiantes.insert([
@@ -89,21 +97,27 @@ db.estudiantes.insert([
   "estudiante":"Pablo Cerdas Araya",
   "carnet":2018023948,
   "activo":true,
-  "programasA":[0]
+  "programasA":[0],
+  "password":"54321a",
+  "codigoInst":[0]
 },
 {
   "_id":1,
   "estudiante":"Ricardo Enrique Arroyo Valverde",
   "carnet":2018023949,
   "activo":true,
-  "programasA":[0]
+  "programasA":[0],
+  "password":"54321a",
+  "codigoInst":[0]
 },
 {
   "_id":2,
   "estudiante":"Hernán Zamora Fonseca",
   "carnet":2018023950,
   "activo":true,
-  "programasA":[0]
+  "programasA":[0],
+  "password":"54321a",
+  "codigoInst":[0]
 }])
 
 db.mallasCurriculares.insert([
@@ -111,26 +125,28 @@ db.mallasCurriculares.insert([
   "_id":0,
   "materias":[0,1,2],
   "numeroPlan":410,
-  "anno": 2012,
+  "anho": 2012,
   "codigoProgr":0
 },
 {
   "_id":1,
   "materias":[0,1,2,3],
   "numeroPlan":411,
-  "anno": 2018,
+  "anho": 2018,
   "codigoProgr":0
 }])
 
 db.grupos.insert([
 {
   "_id":0,
+  "numeroGrupo":1,
   "codigoProfe":0,
   "horario":"L_7:30-9:20;M_7:30-9:20",
   "estudiantes":[0,1]
 },
 {
   "_id":1,
+  "numeroGrupo":2,
   "codigoProfe":0,
   "horario":"M_13:30-15:20;V_13:30-15:20",
   "estudiantes":[2]
@@ -139,7 +155,7 @@ db.grupos.insert([
 db.cursos.insertOne({
   "_id":0,
   "semestre":1,
-  "anno":2018,
+  "anho":2018,
   "codigoMateria":2,
   "grupos":[0,1]
 })
@@ -147,8 +163,10 @@ db.cursos.insertOne({
 db.profesores.insertOne(
 {
   "_id":4,
+  "carnet":2018000004,
   "profesor":"Dimitri",
-  "codigoEsc":2 //ID escuela
+  "codigoEsc":2,
+  "password":"12345e"
 })
 
 
@@ -156,12 +174,14 @@ db.profesores.insertOne(
 db.grupos.insert([
 {
   "_id":2,
+  "numeroGrupo":1,
   "codigoProfe":4,
   "horario":"L_7:30-9:20;M_7:30-9:20",
   "estudiantes":[0]
 },
 {
   "_id":3,
+  "numeroGrupo":2,
   "codigoProfe":4,
   "horario":"M_13:30-15:20;V_13:30-15:20",
   "estudiantes":[2]
@@ -170,7 +190,7 @@ db.grupos.insert([
 db.cursos.insertOne({
   "_id":1,
   "semestre":2,
-  "anno":2017,
+  "anho":2017,
   "codigoMateria":3,//ID materia que da este curso
   "grupos":[2,3]//ID Grupos que pertenecen a este curso
 })
