@@ -1,0 +1,145 @@
+use sistemaM
+
+db.instituciones.insertOne({
+  "_id":0,
+  "institucion":"Tecnológico de Costa Rica",
+  "pais":"CRC",
+  "sede":"Central"
+})
+
+db.escuelas.insert([
+{
+  "_id":0,
+  "escuela":"Escuela de Computación",
+  "codigoInst":0
+},
+{
+  "_id":1,
+  "escuela":"Escuela de Producción Industrial",
+  "codigoInst":0
+},
+{
+  "_id":2,
+  "escuela":"Escuela de Ciencias del Lenguaje",
+  "codigoInst":0
+}])
+
+db.programasAcademicos.insertOne({
+  "_id":0,
+  "programaA":"Ingeniería en computación",
+  "codigoEsc":0
+}
+)
+
+db.materias.insert([
+{
+  "_id":0,
+  "materia":"Requerimientos de Software",
+  "requisitos":[],
+  "corequisitos":[],
+  "codigoEsc":0
+},
+{
+  "_id":1,
+  "materia":"Bases de Datos 1",
+  "requisitos":[],
+  "corequisitos":[],
+  "codigoEsc":0
+},
+{
+  "_id":2,
+  "materia":"Bases de Datos 2",
+  "requisitos":[1],
+  "corequisitos":[],
+  "codigoEsc":0
+},
+{
+  "_id":3,
+  "materia":"Comunicación Oral",
+  "requisitos":[],
+  "corequisitos":[],
+  "codigoEsc":2
+}])
+
+db.profesores.insert([
+{
+  "_id":0,
+  "profesor":"Jose Dolores Navas Su",
+  "codigoEsc":0
+},
+{
+  "_id":1,
+  "profesor":"Jaime Solano Soto",
+  "codigoEsc":0
+},
+{
+  "_id":2,
+  "profesor":"Kirstein Gatjens Soto",
+  "codigoEsc":0
+},
+{
+  "_id":3,
+  "profesor":"Ivannia Hasbum",
+  "codigoEsc":1
+}])
+
+db.estudiantes.insert([
+{
+  "_id":0,
+  "estudiante":"Pablo Cerdas Araya",
+  "carnet":2018023948,
+  "activo":true,
+  "programasA":[0]
+},
+{
+  "_id":1,
+  "estudiante":"Ricardo Enrique Arroyo Valverde",
+  "carnet":2018023949,
+  "activo":true,
+  "programasA":[0]
+},
+{
+  "_id":2,
+  "estudiante":"Hernán Zamora Fonseca",
+  "carnet":2018023950,
+  "activo":true,
+  "programasA":[0]
+}])
+
+db.mallasCurriculares.insert([
+{
+  "_id":0,
+  "materias":[0,1,2],
+  "numeroPlan":410,
+  "anno": 2012,
+  "codigoProgr":0
+},
+{
+  "_id":1,
+  "materias":[0,1,2,3],
+  "numeroPlan":411,
+  "anno": 2018,
+  "codigoProgr":0
+}])
+
+db.grupos.insert([
+{
+  "_id":0,
+  "codigoProfe":0,
+  "horario":"L_7:30-9:20;M_7:30-9:20",
+  "estudiantes":[0,1]
+},
+{
+  "_id":1,
+  "codigoProfe":0,
+  "horario":"M_13:30-15:20;V_13:30-15:20",
+  "estudiantes":[2]
+}])
+
+db.cursos.insertOne({
+  "_id":0,
+  "semestre":1,
+  "anno":2018,
+  "codigoMateria":2,
+  "grupos":[0,1]
+})
