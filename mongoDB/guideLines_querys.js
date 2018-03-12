@@ -123,6 +123,9 @@ db.cursos.update(
 //--------------------------------------------------------------------------
 //GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET
 //GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET - GET
+
+
+//Gets en dónde se obtiene la información pero se utilizan los ids
 db.cursos.find().pretty()
 db.escuelas.find().pretty()
 db.estudiantes.find().pretty()
@@ -132,7 +135,92 @@ db.mallasCurriculares.find().pretty()
 db.materias.find().pretty()
 db.profesores.find().pretty()
 db.programasAcademicos.find().pretty()
+//Querys más complejos en dónde se busca el id para mostrar la represenación del objeto
+//Información sobre los cursos (Incluye materia, estudiantes y profesores)
+db.cursos.aggregate([ 
+{
+  $lookup:{
+    from:"materias",
+    localField:"codigoMateria",
+    foreignField:"_id",
+    as: "materia"
+  }
+},
+{
+  $unwind:"$materia"
+},
+{
+  $lookup:{
+    from:"grupos",
+    localField:"grupos",
+    foreignField:"_id",
+    as: "gruposCurso"
+  }
+},
+{
+  $lookup:{
+    from:"estudiantes",
+    localField:"gruposCurso.estudiantes",
+   	foreignField:"_id",
+   	as: "estudiantes"
+  }
+},
 
+{
+  $lookup:{
+    from:"profesores",
+    localField:"gruposCurso.codigoProfe",
+    foreignField:"_id",
+    as: "profesores"
+  }
+},
+{
+  $project:{
+    _id:1,
+    semestre:1,
+    anno:1,
+    materia:1,
+    gruposCurso:1,
+    profesores:1,
+    estudiantes:1,
+  }
+}
+])
+//Información de las escuelas y de la institución a la que pertenecen
+db.escuelas.aggregate([ 
+{
+  $lookup:{
+    from:"instituciones",
+    localField:"codigoInst",
+    foreignField:"_id",
+    as: "Institucion"
+  }
+},
+{
+  $unwind:"$Institucion"
+},
+{
+  $project:{
+    codigoInst:0
+  }
+}
+]
+//Obtener por escuela, los programas academicos que ofrecen
+db.escuelas.aggregate([ 
+{
+  $lookup:{
+    from:"programasAcademicos",
+    localField:"_id",
+    foreignField:"codigoEsc",
+    as: "ProgramasAcademicos"
+  }
+},
+{
+  $project:{
+    "ProgramasAcademicos.codigoEsc":0
+  }
+}
+])
 db.cursos.
 db.escuelas.
 db.estudiantes.
