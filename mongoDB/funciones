@@ -1,0 +1,149 @@
+function insertInstitucion(nombre, pais, sede){
+
+   var documentoInsertado = db.instituciones.insertOne({
+  "_id": getNextSequenceValue("instituciones_id"),
+  "institucion":nombre,
+  "pais":pais,
+  "sede":sede
+  });
+	
+   return documentoInsertado;
+}
+
+function insertEscuelas(nombre, codigoInst){
+
+   var documentoInsertado = db.escuelas.insertOne({
+  "_id": getNextSequenceValue("escuelas_id"),
+  "escuela":nombre,
+  "codigoInst":codigoInst,
+  });
+	
+   return documentoInsertado;
+}
+
+function insertProgramasAcademicos(nombre, codigoEsc){
+
+   var documentoInsertado = db.programasAcademicos.insertOne({
+  "_id": getNextSequenceValue("programasAcademicos_id"),
+  "programaA":nombre,
+  "codigoEsc":codigoEsc,
+  });
+	
+   return documentoInsertado;
+}
+
+function insertMaterias(nombre, codigoEsc){
+
+   var documentoInsertado = db.materias.insertOne({
+  "_id": getNextSequenceValue("materias_id"),
+  "materia":nombre,
+  "requisitos":[],
+  "corequisitos":[],
+  "codigoEsc":codigoEsc,
+  });
+	
+   return documentoInsertado;
+}
+
+function insertProfesores(nombre, requisitos, corequisitos, codigoEsc){
+   var documentoInsertado = db.profesores.insertOne({
+  "_id": getNextSequenceValue("profesores_id"),
+  "profesor":nombre,
+  "codigoEsc":codigoEsc
+  });
+	
+   return documentoInsertado;
+}
+
+function insertEstudiantes(nombre, carnet){
+   var documentoInsertado = db.estudiantes.insertOne({
+  "_id": getNextSequenceValue("estudiantes_id"),
+  "estudiante":nombre,
+  "carnet":carnet,
+  "activo":true,
+  "programasA":[]
+  });
+	
+   return documentoInsertado;
+}
+
+function insertMallasCurriculares(numeroPlan, anho, codigoProgr){
+   var documentoInsertado = db.mallasCurriculares.insertOne({
+  "_id": getNextSequenceValue("mallasCurriculares_id"),
+  "materias":[],
+  "numeroPlan":numeroPlan,
+  "anho":anho,
+  "codigoProgr":codigoProgr
+  });
+	
+   return documentoInsertado;
+}
+
+function insertGrupos(codigoProfe, horario){
+   var documentoInsertado = db.grupos.insertOne({
+  "_id": getNextSequenceValue("grupos_id"),
+  "codigoProfe":codigoProfe,
+  "horario":horario,
+  "estudiantes":[]
+  });
+	
+   return documentoInsertado;
+}
+
+function insertCursos(anho, codigoMateria, grupos){
+   var documentoInsertado = db.cursos.insertOne({
+  "_id": getNextSequenceValue("cursos_id"),
+  "anho":anho,
+  "codigoMateria":codigoMateria,
+  "grupos": grupos
+  });
+	
+   return documentoInsertado;
+}
+
+
+
+function getCursos(){
+   var documento = db.cursos.find();
+   return documento;
+}
+
+function getEscuelas(){
+   var documento = db.escuelas.find();
+   return documento;
+}
+
+function getEstudiantes(){
+   var documento = db.estudiantes.find();
+   return documento;
+}
+
+function getGrupos(){
+   var documento = db.grupos.find();
+   return documento;
+}
+
+function getInstituciones(){
+   var documento = db.instituciones.find();
+   return documento;
+}
+
+function getMallasCurriculares(){
+   var documento = db.mallasCurriculares.find();
+   return documento;
+}
+
+function getMaterias(){
+   var documento = db.materias.find();
+   return documento;
+}
+
+function getProfesores(){
+   var documento = db.profesores.find();
+   return documento;
+}
+
+function getProgramasAcademicos(){
+   var documento = db.programasAcademicos.find();
+   return documento;
+}
