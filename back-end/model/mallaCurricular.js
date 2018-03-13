@@ -9,7 +9,7 @@ const MallaCSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    codigoProgA:{
+    idProgA:{
         type: Number,
         required: true
     },

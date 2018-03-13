@@ -9,7 +9,7 @@ const CursoSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    codigoMateria:{
+    idMateria:{
         type: Number,
         required: true
     },

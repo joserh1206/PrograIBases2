@@ -5,10 +5,6 @@ const InstitucionSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-    codigo:{
-        type: Number,
-        required: true
-    },
     pais:{
         type: String,
         required: true

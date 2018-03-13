@@ -5,11 +5,7 @@ const EscuelaSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-    codigoEsc:{
-        type: Number,
-        required: true
-    },
-    codigoInst:{
+    idInst:{
         type: Number,
         required: true
     }

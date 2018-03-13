@@ -9,7 +9,7 @@ const ProgramaASchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    codigoEsc:{
+    idEsc:{
         type: Number,
         required: true
     }

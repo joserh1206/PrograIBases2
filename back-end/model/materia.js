@@ -9,7 +9,7 @@ const MateriaSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    codigoEsc:{
+    idEsc:{
         type: Number,
         required: true
     },

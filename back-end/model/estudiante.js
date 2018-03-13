@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const EstudianteSchema = mongoose.Schema({
-	nombre:{
+    nombre:{
 		type: String,
 		required: true
 	},
@@ -9,19 +9,18 @@ const EstudianteSchema = mongoose.Schema({
 		type: Number,
 		required: true
 	},
-    codigoInst:{
+    idInst:{
         type: Number, 
         required: true
     },
-    codigoEsc: {
+    idEsc: {
         type: Number, 
         required: true
     },
-    programaA: {
+    idProgA: {
         type: Number,
         required: true
     },
-    //activo:{type: Boolean, required: true},
     password:{
         type: String,
         required: true
