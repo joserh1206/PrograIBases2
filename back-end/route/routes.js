@@ -21,7 +21,6 @@ router.get('/instituciones', (req, res, next)=>{
 router.post('/institucion', (req, res, next)=>{
 	let newInstitucion = new institucion({
 		nombreInst: req.body.nombreInst,
-		codigo: req.body.codigo,
         pais: req.body.pais,
         sede: req.body.sede
 	});
@@ -39,7 +38,6 @@ router.put('/institucion/:id', (req, res, next)=>{
 	institucion.findOneAndUpdate({_id: req.params.id},{
 		$set:{
             nombreInst: req.body.nombreInst,
-            codigo: req.body.codigo,
             pais: req.body.pais,
             sede: req.body.sede
 		}
@@ -86,8 +84,7 @@ router.get('/escuelas', (req, res, next)=>{
 router.post('/escuela', (req, res, next)=>{
 	let newEscuela = new escuela({
 		nombreEscuela: req.body.nombreEscuela,
-        codigoEsc: req.body.codigoEsc,
-		codigoInst: req.body.codigoInst
+		idInst: req.body.idInst
 	});
 	newEscuela.save((err, result)=>{
 		if(err){
@@ -103,8 +100,7 @@ router.put('/escuela/:id', (req, res, next)=>{
 	escuela.findOneAndUpdate({_id: req.params.id},{
 		$set:{
             nombreEscuela: req.body.nombreEscuela,
-            codigoEsc: req.body.codigoEsc,
-            codigoInst: req.body.codigoInst
+            idInst: req.body.idInst
 		}
 	},
 	function(err, result){
@@ -150,7 +146,7 @@ router.post('/programaA', (req, res, next)=>{
 	let newProgramaA = new programaA({
 		nombreProgA: req.body.nombreProgA,
         codigo: req.body.codigo,
-		codigoEsc: req.body.codigoEsc
+		idEsc: req.body.idEsc
 	});
 	newProgramaA.save((err, result)=>{
 		if(err){
@@ -167,7 +163,7 @@ router.put('/programaA/:id', (req, res, next)=>{
 		$set:{
             nombreProgA: req.body.nombreProgA,
             codigo: req.body.codigo,
-            codigoEsc: req.body.codigoEsc
+            idEsc: req.body.idEsc
 		}
 	},
 	function(err, result){
@@ -215,7 +211,7 @@ router.post('/mallaC', (req, res, next)=>{
 	let newMallaC = new mallaC({
 		numeroPlan: req.body.numeroPlan,
         anho: req.body.anho,
-		codigoProgA: req.body.codigoProgA,
+		idProgA: req.body.idProgA,
         materias: req.body.materias
 	});
 	newMallaC.save((err, result)=>{
@@ -233,7 +229,7 @@ router.put('/mallaC/:id', (req, res, next)=>{
 		$set:{
     		numeroPlan: req.body.numeroPlan,
             anho: req.body.anho,
-            codigoProgA: req.body.codigoProgA,
+            idProgA: req.body.idProgA,
             materias: req.body.materias
 		}
 	},
@@ -281,7 +277,7 @@ router.post('/materia', (req, res, next)=>{
 	let newMateria = new materia({
 		nombre: req.body.nombre,
         codigo: req.body.codigo,
-		codigoEsc: req.body.codigoEsc,
+		idEsc: req.body.idEsc,
         requisitos: req.body.requisitos,
         corequisitos: req.body.corequisitos
 	});
@@ -300,7 +296,7 @@ router.put('/materia/:id', (req, res, next)=>{
 		$set:{
             nombre: req.body.nombre,
             codigo: req.body.codigo,
-            codigoEsc: req.body.codigoEsc,
+            idEsc: req.body.idEsc,
             requisitos: req.body.requisitos,
             corequisitos: req.body.corequisitos
 		}
@@ -332,12 +328,131 @@ router.delete('/materia/:id', (req, res, next)=>{
 //CURSOS
 //----------------------------------------------------------------------------------------
 
+const curso = require('../model/curso');
+
+router.get('/cursos', (req, res, next)=>{
+	curso.find(function(err, cursos){
+		if(err){
+			res.json(err);
+		}
+		else{
+			res.json(cursos);
+		}
+	});
+});
+
+router.post('/curso', (req, res, next)=>{
+	let newCurso = new curso({
+		semestre: req.body.semestre,
+        anho: req.body.anho,
+		idMateria: req.body.idMateria,
+        grupos: req.body.grupos
+    });
+	newCurso.save((err, result)=>{
+		if(err){
+			res.json(err);
+		}
+		else{
+			res.json({msg: 'Curso agregado'});
+		}
+	})
+});
+
+router.put('/curso/:id', (req, res, next)=>{
+	curso.findOneAndUpdate({_id: req.params.id},{
+		$set:{
+            semestre: req.body.semestre,
+            anho: req.body.anho,
+            idMateria: req.body.idMateria,
+            grupos: req.body.grupos
+		}
+	},
+	function(err, result){
+		if(err){
+			res.json(err);
+		}
+		else{
+			res.json({msg: 'Datos de curso actualizados'});
+		}
+	})
+});
+
+router.delete('/curso/:id', (req, res, next)=>{
+	curso.remove({_id: req.params.id}, function(err,result){
+		if(err){
+			res.json(err);
+		}
+		else{
+			res.json({msg: 'Curso eliminado'});
+		}
+	})
+});
+
 
 
 //----------------------------------------------------------------------------------------
 //GRUPOS
 //----------------------------------------------------------------------------------------
 
+const grupo = require('../model/grupo');
+
+router.get('/grupos', (req, res, next)=>{
+	grupo.find(function(err, grupos){
+		if(err){
+			res.json(err);
+		}
+		else{
+			res.json(grupos);
+		}
+	});
+});
+
+router.post('/grupo', (req, res, next)=>{
+	let newGrupo = new grupo({
+		numGrupo: req.body.numGrupo,
+        horario: req.body.horario,
+		profesor: req.body.profesor,
+        estudiantes: req.body.estudiantes
+    });
+	newGrupo.save((err, result)=>{
+		if(err){
+			res.json(err);
+		}
+		else{
+			res.json({msg: 'Grupo agregado'});
+		}
+	})
+});
+
+router.put('/grupo/:id', (req, res, next)=>{
+	grupo.findOneAndUpdate({_id: req.params.id},{
+		$set:{
+            numGrupo: req.body.numGrupo,
+            horario: req.body.horario,
+            profesor: req.body.profesor,
+            estudiantes: req.body.estudiantes
+		}
+	},
+	function(err, result){
+		if(err){
+			res.json(err);
+		}
+		else{
+			res.json({msg: 'Datos de grupo actualizados'});
+		}
+	})
+});
+
+router.delete('/grupo/:id', (req, res, next)=>{
+	grupo.remove({_id: req.params.id}, function(err,result){
+		if(err){
+			res.json(err);
+		}
+		else{
+			res.json({msg: 'Grupo eliminado'});
+		}
+	})
+});
 
 
 //----------------------------------------------------------------------------------------
@@ -361,11 +476,10 @@ router.post('/estudiante', (req, res, next)=>{
 	let newEstudiante = new estudiante({
 		nombre: req.body.nombre,
 		carnet: req.body.carnet,
-        codigoInst: req.body.codigoInst,
-        codigoEsc: req.body.codigoEsc,
-        programaA: req.body.programaA,
-		//activo: req.body.activo,
-        password: req.body.password
+        idInst: req.body.idInst,
+        idEsc: req.body.idEsc,
+        idProgA: req.body.idProgA,
+		password: req.body.password
 	});
 	newEstudiante.save((err, result)=>{
 		if(err){
@@ -382,10 +496,9 @@ router.put('/estudiante/:id', (req, res, next)=>{
 		$set:{
             nombre: req.body.nombre,
             carnet: req.body.carnet,
-            codigoInst: req.body.codigoInst,
-            codigoEsc: req.body.codigoEsc,
-            programaA: req.body.programaA,
-            //activo: req.body.activo,
+            idInst: req.body.idInst,
+            idEsc: req.body.idEsc,
+            idProgA: req.body.idProgA,
             password: req.body.password
 		}
 	},
