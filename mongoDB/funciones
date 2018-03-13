@@ -1,11 +1,10 @@
 function insertInstitucion(nombre, pais, sede){
-
    var documentoInsertado = db.instituciones.insertOne({
-  "_id": getNextSequenceValue("instituciones_id"),
-  "institucion":nombre,
-  "pais":pais,
-  "sede":sede
-  });
+   "_id": getNextSequenceValue("instituciones_id"),
+   "institucion":nombre,
+   "pais":pais,
+   "sede":sede
+   });
 	
    return documentoInsertado;
 }
@@ -45,23 +44,27 @@ function insertMaterias(nombre, codigoEsc){
    return documentoInsertado;
 }
 
-function insertProfesores(nombre, requisitos, corequisitos, codigoEsc){
+function insertProfesores(nombre, carnet, password, codigoEsc){
    var documentoInsertado = db.profesores.insertOne({
   "_id": getNextSequenceValue("profesores_id"),
+  "carnet":carnet,
   "profesor":nombre,
-  "codigoEsc":codigoEsc
+  "codigoEsc":codigoEsc,
+  "password":password
   });
 	
    return documentoInsertado;
 }
 
-function insertEstudiantes(nombre, carnet){
+function insertEstudiantes(nombre, carnet, password){
    var documentoInsertado = db.estudiantes.insertOne({
   "_id": getNextSequenceValue("estudiantes_id"),
   "estudiante":nombre,
   "carnet":carnet,
   "activo":true,
-  "programasA":[]
+  "programasA":[],
+  "password":password,
+  "codigoInst":[]
   });
 	
    return documentoInsertado;
@@ -79,9 +82,10 @@ function insertMallasCurriculares(numeroPlan, anho, codigoProgr){
    return documentoInsertado;
 }
 
-function insertGrupos(codigoProfe, horario){
+function insertGrupos(numeroGrupo, codigoProfe, horario){
    var documentoInsertado = db.grupos.insertOne({
   "_id": getNextSequenceValue("grupos_id"),
+  "numeroGrupo":numeroGrupo,
   "codigoProfe":codigoProfe,
   "horario":horario,
   "estudiantes":[]
@@ -90,12 +94,13 @@ function insertGrupos(codigoProfe, horario){
    return documentoInsertado;
 }
 
-function insertCursos(anho, codigoMateria, grupos){
+function insertCursos(semestre, anho, codigoMateria, grupos){
    var documentoInsertado = db.cursos.insertOne({
   "_id": getNextSequenceValue("cursos_id"),
+  "semestre": semestre,
   "anho":anho,
   "codigoMateria":codigoMateria,
-  "grupos": grupos
+  "grupos": []
   });
 	
    return documentoInsertado;
