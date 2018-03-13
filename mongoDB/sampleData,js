@@ -1,7 +1,47 @@
 use sistemaM
+db.counters.insert([
+{
+  _id:"cursos_id",sequence_value:0
+},
+{
+  _id:"escuelas_id",sequence_value:0
+},
+{
+  _id:"estudiantes_id",sequence_value:0
+},
+{
+  _id:"grupos_id",sequence_value:0
+},
+{
+  _id:"instituciones_id",sequence_value:0
+},
+{
+  _id:"mallasCurriculares_id",sequence_value:0
+},
+{
+  _id:"materias_id",sequence_value:0
+},
+{
+  _id:"profesores_id",sequence_value:0
+},
+{
+  _id:"programasAcademicos_id",sequence_value:0
+}
+])
+
+function getNextSequenceValue(sequenceName){
+
+   var sequenceDocument = db.counters.findAndModify({
+      query:{_id: sequenceName },
+      update: {$inc:{sequence_value:1}},
+      new:true
+   });
+	
+   return sequenceDocument.sequence_value;
+}
 
 db.instituciones.insertOne({
-  "_id":0,
+  "_id":getNextSequenceValue("instituciones_id"),
   "institucion":"Tecnológico de Costa Rica",
   "pais":"CRC",
   "sede":"Central"
@@ -9,23 +49,23 @@ db.instituciones.insertOne({
 
 db.escuelas.insert([
 {
-  "_id":0,
+  "_id":getNextSequenceValue("escuelas_id"),
   "escuela":"Escuela de Computación",
   "codigoInst":0
 },
 {
-  "_id":1,
+  "_id":getNextSequenceValue("escuelas_id"),
   "escuela":"Escuela de Producción Industrial",
   "codigoInst":0
 },
 {
-  "_id":2,
+  "_id":getNextSequenceValue("escuelas_id"),
   "escuela":"Escuela de Ciencias del Lenguaje",
   "codigoInst":0
 }])
 
 db.programasAcademicos.insertOne({
-  "_id":0,
+  "_id":getNextSequenceValue("programasAcademicos_id"),
   "programaA":"Ingeniería en computación",
   "codigoEsc":0
 }
@@ -33,28 +73,28 @@ db.programasAcademicos.insertOne({
 
 db.materias.insert([
 {
-  "_id":0,
+  "_id":getNextSequenceValue("materias_id"),
   "materia":"Requerimientos de Software",
   "requisitos":[],
   "corequisitos":[],
   "codigoEsc":0
 },
 {
-  "_id":1,
+  "_id":getNextSequenceValue("materias_id"),
   "materia":"Bases de Datos 1",
   "requisitos":[],
   "corequisitos":[],
   "codigoEsc":0
 },
 {
-  "_id":2,
+  "_id":getNextSequenceValue("materias_id"),
   "materia":"Bases de Datos 2",
   "requisitos":[1],
   "corequisitos":[],
   "codigoEsc":0
 },
 {
-  "_id":3,
+  "_id":getNextSequenceValue("materias_id"),
   "materia":"Comunicación Oral",
   "requisitos":[],
   "corequisitos":[],
@@ -63,28 +103,28 @@ db.materias.insert([
 
 db.profesores.insert([
 {
-  "_id":0,
+  "_id":getNextSequenceValue("profesores_id"),
   "carnet":2018000000,
   "profesor":"Jose Dolores Navas Su",
   "codigoEsc":0,
   "password":"12345a"
 },
 {
-  "_id":1,
+  "_id":getNextSequenceValue("profesores_id"),
   "carnet":2018000001,
   "profesor":"Jaime Solano Soto",
   "codigoEsc":0,
   "password":"12345b"
 },
 {
-  "_id":2,
+  "_id":getNextSequenceValue("profesores_id"),
   "carnet":2018000002,
   "profesor":"Kirstein Gatjens Soto",
   "codigoEsc":0,
   "password":"12345c"
 },
 {
-  "_id":3,
+  "_id":getNextSequenceValue("profesores_id"),
   "carnet":2018000003,
   "profesor":"Ivannia Hasbum",
   "codigoEsc":1,
@@ -93,7 +133,7 @@ db.profesores.insert([
 
 db.estudiantes.insert([
 {
-  "_id":0,
+  "_id":getNextSequenceValue("estudiantes_id"),
   "estudiante":"Pablo Cerdas Araya",
   "carnet":2018023948,
   "activo":true,
@@ -102,7 +142,7 @@ db.estudiantes.insert([
   "codigoInst":[0]
 },
 {
-  "_id":1,
+  "_id":getNextSequenceValue("estudiantes_id"),
   "estudiante":"Ricardo Enrique Arroyo Valverde",
   "carnet":2018023949,
   "activo":true,
@@ -111,7 +151,7 @@ db.estudiantes.insert([
   "codigoInst":[0]
 },
 {
-  "_id":2,
+  "_id":getNextSequenceValue("estudiantes_id"),
   "estudiante":"Hernán Zamora Fonseca",
   "carnet":2018023950,
   "activo":true,
@@ -122,14 +162,14 @@ db.estudiantes.insert([
 
 db.mallasCurriculares.insert([
 {
-  "_id":0,
+  "_id":getNextSequenceValue("mallasCurriculares_id"),
   "materias":[0,1,2],
   "numeroPlan":410,
   "anho": 2012,
   "codigoProgr":0
 },
 {
-  "_id":1,
+  "_id":getNextSequenceValue("mallasCurriculares_id"),
   "materias":[0,1,2,3],
   "numeroPlan":411,
   "anho": 2018,
@@ -138,14 +178,14 @@ db.mallasCurriculares.insert([
 
 db.grupos.insert([
 {
-  "_id":0,
+  "_id":getNextSequenceValue("grupos_id"),
   "numeroGrupo":1,
   "codigoProfe":0,
   "horario":"L_7:30-9:20;M_7:30-9:20",
   "estudiantes":[0,1]
 },
 {
-  "_id":1,
+  "_id":getNextSequenceValue("grupos_id"),
   "numeroGrupo":2,
   "codigoProfe":0,
   "horario":"M_13:30-15:20;V_13:30-15:20",
@@ -153,7 +193,7 @@ db.grupos.insert([
 }])
 
 db.cursos.insertOne({
-  "_id":0,
+  "_id":getNextSequenceValue("cursos_id"),
   "semestre":1,
   "anho":2018,
   "codigoMateria":2,
@@ -162,7 +202,7 @@ db.cursos.insertOne({
 
 db.profesores.insertOne(
 {
-  "_id":4,
+  "_id":getNextSequenceValue("profesores_id"),
   "carnet":2018000004,
   "profesor":"Dimitri",
   "codigoEsc":2,
@@ -173,14 +213,14 @@ db.profesores.insertOne(
 
 db.grupos.insert([
 {
-  "_id":2,
+  "_id":getNextSequenceValue("grupos_id"),
   "numeroGrupo":1,
   "codigoProfe":4,
   "horario":"L_7:30-9:20;M_7:30-9:20",
   "estudiantes":[0]
 },
 {
-  "_id":3,
+  "_id":getNextSequenceValue("grupos_id"),
   "numeroGrupo":2,
   "codigoProfe":4,
   "horario":"M_13:30-15:20;V_13:30-15:20",
@@ -188,7 +228,7 @@ db.grupos.insert([
 }])
 
 db.cursos.insertOne({
-  "_id":1,
+  "_id":getNextSequenceValue("cursos_id"),
   "semestre":2,
   "anho":2017,
   "codigoMateria":3,//ID materia que da este curso
