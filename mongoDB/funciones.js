@@ -107,6 +107,70 @@ function insertCursos(semestre, anho, codigoMateria, grupos){
 }
 
 
+function agregarReqMateria(idMateria, nuevoReq){
+   var documentoActualizado = db.materias.update(
+     {_id:idMateria},
+     {$addToSet:{"requisitos":nuevoReq}}
+   )
+   return documentoActualizado;
+}
+
+function eliminarReqMateria(idMateria, eliminar){
+   var documentoActualizado = db.materias.update(
+     {_id:idMateria},
+     { $pull: { 'requisitos': eliminar}}
+   )
+   return documentoActualizado;
+}
+
+function agregarCoreqMateria(idMateria, nuevoCoreq){
+   var documentoActualizado = db.materias.update(
+     {_id:idMateria},
+     {$addToSet:{"corequisitos":nuevoReq}}
+   )
+   return documentoActualizado;
+}
+
+function eliminarCoreqMateria(idMateria, eliminar){
+   var documentoActualizado = db.materias.update(
+     {_id:idMateria},
+     { $pull: { 'corequisitos': eliminar}}
+   )
+   return documentoActualizado;
+}
+
+function agregarProgramasA(idEstudiante, idPrograma){
+   var documentoActualizado = db.estudiantes.update(
+     {_id:idEstudiante},
+     {$addToSet:{"programasA":idPrograma}}
+   )
+   return documentoActualizado;
+}
+
+function eliminarProgramasA(idEstudiante, idPrograma){
+   var documentoActualizado = db.estudiantes.update(
+     {_id:idEstudiante},
+     { $pull: { 'programasA': idPrograma}}
+   )
+   return documentoActualizado;
+}
+
+function agregarMateria(idMalla, idMateria){
+   var documentoActualizado = db.mallasCurriculares.update(
+     {_id:idMalla},
+     {$addToSet:{"materias":idMateria}}
+   )
+   return documentoActualizado;
+}
+
+function eliminarMateria(idMalla, idMateria){
+   var documentoActualizado = db.mallasCurriculares.update(
+     {_id:idMalla},
+     { $pull: { 'materias': idMateria}}
+   )
+   return documentoActualizado;
+}
+
 
 function getCursos(){
    var documento = db.cursos.find();
@@ -152,3 +216,4 @@ function getProgramasAcademicos(){
    var documento = db.programasAcademicos.find();
    return documento;
 }
+
