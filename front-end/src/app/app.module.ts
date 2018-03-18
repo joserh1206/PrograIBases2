@@ -1,16 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { FormsModule }   from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { RegEstudianteComponent } from './regestudiante/regestudiante.component';
+import { RegestudiantesComponent } from './regestudiantes/regestudiantes.component';
+import { RegprofesoresComponent } from './regprofesores/regprofesores.component';
+import { LoginusuariosComponent } from './loginusuarios/loginusuarios.component';
+import { CrearinstitucionesComponent } from './crearinstituciones/crearinstituciones.component';
+import { MenuprofesorComponent } from './menuprofesor/menuprofesor.component';
+import { CrearescuelaComponent } from './crearescuela/crearescuela.component';
+import { AgregarprogramaComponent } from './agregarprograma/agregarprograma.component';
+import { AgregarmallaComponent } from './agregarmalla/agregarmalla.component';
+import { AgregarmateriaComponent } from './agregarmateria/agregarmateria.component';
+import { AgregarcursogrupoComponent } from './agregarcursogrupo/agregarcursogrupo.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegEstudianteComponent
+    RegestudiantesComponent,
+    RegprofesoresComponent,
+    LoginusuariosComponent,
+    CrearinstitucionesComponent,
+    MenuprofesorComponent,
+    CrearescuelaComponent,
+    AgregarprogramaComponent,
+    AgregarmallaComponent,
+    AgregarmateriaComponent,
+    AgregarcursogrupoComponent
   ],
   imports: [
     BrowserModule,

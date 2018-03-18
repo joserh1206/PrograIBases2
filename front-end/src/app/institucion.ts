@@ -1,5 +1,6 @@
 export class Institucion{
-    nombreInst: string;
+	_id?: number;
+    institucion: string;
     pais: string;
     sede: string;
 }
