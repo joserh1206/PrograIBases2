@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Estudiante</title>
+</head>
+
+<body>
+	<div class="register-photo">
+        <div class="form-container">
+            <div class="image-holder aux"></div>
+            <form #frm = "ngForm" (ngSubmit)="registrarEstudiante(frm)">
+                <h2 class="text-center"><strong>Registro </strong>de estudiantes</h2>
+                <div class="form-group"><input class="form-control" type="text" ng-model="nombre" placeholder="Nombre" id="name_input" style="width:100%;"></div>
+                <div class="form-group"><input class="form-control" type="text" ng-model="carnet" placeholder="Carnet" id="id_input" style="width:100%;"></div>
+                <div class="form-group">
+					<select class="form-control" ng-model="idInst" style="width:100%;">
+						<option name="hint" value="" selected disabled hidden>Seleccione institución</option>
+						<script>
+							document.write("hola");
+							var select = document.getElementsByName("idInst", instituciones);
+							for (inst in instituciones) {
+								var option = document.createElement("option");
+								option.text = instituciones[inst];
+								select.add(option);
+								console.log(inst);
+							}
+						</script>
+					</select>
+					<div *ngFor = "let inst of instituciones">
+						{{inst.institucion}}
+					</div>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" ng-model="idEsc" id="esc-select" style="width:100%;">
+                        <option name="hint" value="" selected disabled hidden>Seleccione su escuela</option>
+                        <option name="prueba" value=1>Escuela de Computación</option>
+                        <option name="prueba2" value=2>Escuela de Matemática</option>
+                        <option name="prueba3" value=3>Escuela de Ciencias Sociales</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" ng-model="idProgA" id="progA-select" style="width:100%;">
+                        <option name="hint" value="" selected disabled hidden>Seleccione su programa académico</option>
+                        <option name="prueba" value=1>Ingeniería en Computación</option>
+                        <option name="prueba2" value=2>Administración de Tecnologías de Información</option>
+                        <option name="prueba3" value=3>Ingeniería en Computadores</option>
+                    </select>
+                </div>
+                <div class="form-group"><input class="form-control" type="password" ng-model="password" placeholder="Contraseña" id="pass_input" style="width:100%;"></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" id="btn_registrar">Registrar</button></div><a href="#" class="already">Ya tiene una cuenta? Ingrese aquí</a></form>
+        </div>
+    </div>
+</body>
+
+</html>
