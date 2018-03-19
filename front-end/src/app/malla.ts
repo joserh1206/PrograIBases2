@@ -1,4 +1,4 @@
-export class malla {
+export class Malla {
     _id?: number;
     materias: [string];
 	numeroplan: number;

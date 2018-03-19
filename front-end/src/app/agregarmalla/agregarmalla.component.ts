@@ -33,13 +33,13 @@ export class AgregarmallaComponent implements OnInit {
   
   crearMalla(form){
 	  let nuevaMalla: Malla = {
-          materias: form.value.materias;
-		  numeroplan: form.value.numeroplan;
-		  anho: form.value.anho;
-		  codigoprogr: form.value.codigoprogr;
+          materias: form.value.materias,
+		  numeroplan: form.value.numeroplan,
+		  anho: form.value.anho,
+		  codigoprogr: form.value.codigoprogr
 	  }
-      this.dataService.crearMalla(nuevaMalla).subscribe(mall =>{
-          console.log(malla);
+      this.dataService.crearMalla(nuevaMalla).subscribe(mll =>{
+          console.log(mll);
       })	  
   }
 

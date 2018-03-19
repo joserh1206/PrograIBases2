@@ -44,7 +44,8 @@ export class AgregarcursogrupoComponent implements OnInit {
 	  let nuevoCurso: Curso = {
           semestre: form.value.semestre,
           anho: form.value.anho,
-          codigomateria: form.value.codigomateria
+          codigomateria: form.value.codigomateria,
+		  grupos: [-1]
       }
       this.dataService.crearCurso(nuevoCurso).subscribe(cur =>{
           console.log(cur);
@@ -55,7 +56,9 @@ export class AgregarcursogrupoComponent implements OnInit {
       let nuevoGrupo: Grupo = {
           idcurso: form.value.idcurso,
           numerogrupo: form.value.numerogrupo,
-          codigoprofe: form.value.codigoprofe
+          codigoprofe: form.value.codigoprofe,
+		  horario: "",
+		  estudiantes: [-1]
       }
       this.dataService.crearGrupo(nuevoGrupo).subscribe(grp =>{
           console.log(grp);

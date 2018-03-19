@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { Institucion } from './institucion';
-
 @Injectable()
 export class DataService {
 
@@ -20,6 +18,10 @@ export class DataService {
       let headers = new Headers();
       headers.append('Content.Type', 'application/json');
       return this.http.post('http://localhost:3000/api/institucion', nuevaInstitucion, { headers: headers }).map(res => res.json());
+  }
+
+  eliminarInstitucion(id){
+	  return this.http.delete('http://localhost:3000/api/institucion/'+id).map(res => res.json());
   }  
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -33,6 +35,10 @@ export class DataService {
       let headers = new Headers();
       headers.append('Content.Type', 'application/json');
       return this.http.post('http://localhost:3000/api/escuela', nuevaEscuela, { headers: headers }).map(res => res.json());
+  }  
+
+  eliminarEscuela(id){
+	  return this.http.delete('http://localhost:3000/api/escuela/'+id).map(res => res.json());
   }  
   
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -48,6 +54,11 @@ export class DataService {
       return this.http.post('http://localhost:3000/api/programa', nuevoPrograma, { headers: headers }).map(res => res.json());
   }  
 
+  eliminarPrograma(id){
+	  return this.http.delete('http://localhost:3000/api/programa/'+id).map(res => res.json());
+  }  
+  
+  
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 //MALLAS CURRICULARES //------------------------------------------------------------------------------------------------------------------------------------------------------------
   
@@ -59,6 +70,10 @@ export class DataService {
       let headers = new Headers();
       headers.append('Content.Type', 'application/json');
       return this.http.post('http://localhost:3000/api/malla', nuevaMalla, { headers: headers }).map(res => res.json());
+  }
+  
+  eliminarMalla(id){
+	  return this.http.delete('http://localhost:3000/api/malla/'+id).map(res => res.json());
   }  
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -72,6 +87,10 @@ export class DataService {
       let headers = new Headers();
       headers.append('Content.Type', 'application/json');
       return this.http.post('http://localhost:3000/api/materia', nuevaMateria, { headers: headers }).map(res => res.json());
+  }
+  
+  eliminarMateria(id){
+	  return this.http.delete('http://localhost:3000/api/materia/'+id).map(res => res.json());
   }  
   
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -86,6 +105,11 @@ export class DataService {
       headers.append('Content.Type', 'application/json');
       return this.http.post('http://localhost:3000/api/curso', nuevoCurso, { headers: headers }).map(res => res.json());
   }  
+  
+  eliminarCurso(id){
+	  return this.http.delete('http://localhost:3000/api/curso/'+id).map(res => res.json());
+  }  
+
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 //GRUPOS
@@ -101,6 +125,10 @@ export class DataService {
       return this.http.post('http://localhost:3000/api/grupo', nuevoGrupo, { headers: headers }).map(res => res.json());
   }  
  
+   eliminarGrupo(id){
+	  return this.http.delete('http://localhost:3000/api/grupo/'+id).map(res => res.json());
+  }  
+ 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 //ESTUDIANTES //------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -113,6 +141,10 @@ export class DataService {
       headers.append('Content.Type', 'application/json');
       return this.http.post('http://localhost:3000/api/estudiante', nuevoEstudiante, { headers: headers }).map(res => res.json());
   }
+
+  eliminarEstudiante(id){
+	  return this.http.delete('http://localhost:3000/api/estudiante/'+id).map(res => res.json());
+  }  
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 //PROFESORES //------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -127,5 +159,8 @@ export class DataService {
       return this.http.post('http://localhost:3000/api/profesor', nuevoProfesor, { headers: headers }).map(res => res.json());
   }
 
+  eliminarProfesor(id){
+	  return this.http.delete('http://localhost:3000/api/profesor/'+id).map(res => res.json());
+  }  
   
 }

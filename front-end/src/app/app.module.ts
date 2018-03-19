@@ -14,6 +14,9 @@ import { AgregarprogramaComponent } from './agregarprograma/agregarprograma.comp
 import { AgregarmallaComponent } from './agregarmalla/agregarmalla.component';
 import { AgregarmateriaComponent } from './agregarmateria/agregarmateria.component';
 import { AgregarcursogrupoComponent } from './agregarcursogrupo/agregarcursogrupo.component';
+import { VertodoComponent } from './vertodo/vertodo.component';
+import { EliminarprofesorComponent } from './eliminarprofesor/eliminarprofesor.component';
+import { EliminarestudianteComponent } from './eliminarestudiante/eliminarestudiante.component';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { AgregarcursogrupoComponent } from './agregarcursogrupo/agregarcursogrup
     AgregarprogramaComponent,
     AgregarmallaComponent,
     AgregarmateriaComponent,
-    AgregarcursogrupoComponent
+    AgregarcursogrupoComponent,
+    VertodoComponent,
+    EliminarprofesorComponent,
+    EliminarestudianteComponent
   ],
   imports: [
     BrowserModule,
