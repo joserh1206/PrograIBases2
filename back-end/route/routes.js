@@ -1,16 +1,39 @@
 var express = require('express');
 var router = express.Router();
 
+/*
+const counter = require('../model/counters');
+
+function getNextSequenceValue(id, path){
+	router.put(path, (req, res, next)=>{
+		counter.findOneAndUpdate({_id: id}, {
+			$set:{
+				update: {$inc:{sequence_value:1}}
+			}
+		},
+		(err, cnt)=>{
+			if(err){
+				return next(err);
+			}
+			else{
+				res.send(cnt);
+				return cnt.sequence_value;
+			}
+		});
+	});
+}
+*/
+
 //----------------------------------------------------------------------------------------
 //INSTITUCIONES
 //----------------------------------------------------------------------------------------
 
-const institucion = require('../model/institucion');
+const institucion = require('../model/instituciones');
 
 router.get('/instituciones', (req, res, next)=>{
-	institucion.find(function(err, insts){
+	institucion.find((err,insts) =>{
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json(insts);
@@ -20,31 +43,32 @@ router.get('/instituciones', (req, res, next)=>{
 
 router.post('/institucion', (req, res, next)=>{
 	let newInstitucion = new institucion({
-		nombreInst: req.body.nombreInst,
+		_id: req.body._id,
+		institucion: req.body.institucion,
         pais: req.body.pais,
         sede: req.body.sede
 	});
 	newInstitucion.save((err, result)=>{
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Institución agregada'});
 		}
-	})
+	});
 });
 
 router.put('/institucion/:id', (req, res, next)=>{
 	institucion.findOneAndUpdate({_id: req.params.id},{
 		$set:{
-            nombreInst: req.body.nombreInst,
+            institucion: req.body.institucion,
             pais: req.body.pais,
             sede: req.body.sede
 		}
 	},
 	function(err, result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Datos de institución actualizados'});
@@ -55,7 +79,7 @@ router.put('/institucion/:id', (req, res, next)=>{
 router.delete('/institucion/:id', (req, res, next)=>{
 	institucion.remove({_id: req.params.id}, function(err,result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Institución eliminada'});
@@ -63,17 +87,16 @@ router.delete('/institucion/:id', (req, res, next)=>{
 	})
 });
 
-
 //----------------------------------------------------------------------------------------
 //ESCUELAS
 //----------------------------------------------------------------------------------------
 
-const escuela = require('../model/escuela');
+const escuela = require('../model/escuelas');
 
 router.get('/escuelas', (req, res, next)=>{
 	escuela.find(function(err, escs){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json(escs);
@@ -83,12 +106,13 @@ router.get('/escuelas', (req, res, next)=>{
 
 router.post('/escuela', (req, res, next)=>{
 	let newEscuela = new escuela({
-		nombreEscuela: req.body.nombreEscuela,
-		idInst: req.body.idInst
+		_id: req.body._id,
+		escuela: req.body.escuela,
+		codigoInst: req.body.codigoInst
 	});
 	newEscuela.save((err, result)=>{
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Escuela agregada'});
@@ -99,13 +123,13 @@ router.post('/escuela', (req, res, next)=>{
 router.put('/escuela/:id', (req, res, next)=>{
 	escuela.findOneAndUpdate({_id: req.params.id},{
 		$set:{
-            nombreEscuela: req.body.nombreEscuela,
-            idInst: req.body.idInst
+			escuela: req.body.escuela,
+			codigoInst: req.body.codigoInst
 		}
 	},
 	function(err, result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Datos de escuela actualizados'});
@@ -116,7 +140,7 @@ router.put('/escuela/:id', (req, res, next)=>{
 router.delete('/escuela/:id', (req, res, next)=>{
 	escuela.remove({_id: req.params.id}, function(err,result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Escuela eliminada'});
@@ -124,17 +148,16 @@ router.delete('/escuela/:id', (req, res, next)=>{
 	})
 });
 
-
 //----------------------------------------------------------------------------------------
 //PROGRAMAS ACADÉMICOS
 //----------------------------------------------------------------------------------------
 
-const programaA = require('../model/programaAcademico');
+const programa = require('../model/programas');
 
-router.get('/programasA', (req, res, next)=>{
-	programaA.find(function(err, progs){
+router.get('/programas', (req, res, next)=>{
+	programa.find(function(err, progs){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json(progs);
@@ -142,15 +165,15 @@ router.get('/programasA', (req, res, next)=>{
 	});
 });
 
-router.post('/programaA', (req, res, next)=>{
-	let newProgramaA = new programaA({
-		nombreProgA: req.body.nombreProgA,
-        codigo: req.body.codigo,
-		idEsc: req.body.idEsc
+router.post('/programa', (req, res, next)=>{
+	let newPrograma = new programa({
+		_id: req.body._id,
+		programaA: req.body.programaA,
+		codigoEsc: req.body.codigoEsc
 	});
-	newProgramaA.save((err, result)=>{
+	newPrograma.save((err, result)=>{
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Programa académico agregado'});
@@ -158,17 +181,16 @@ router.post('/programaA', (req, res, next)=>{
 	})
 });
 
-router.put('/programaA/:id', (req, res, next)=>{
-	programaA.findOneAndUpdate({_id: req.params.id},{
+router.put('/programa/:id', (req, res, next)=>{
+	programa.findOneAndUpdate({_id: req.params.id},{
 		$set:{
-            nombreProgA: req.body.nombreProgA,
-            codigo: req.body.codigo,
-            idEsc: req.body.idEsc
+			programaA: req.body.programaA,
+			codigoEsc: req.body.codigoEsc
 		}
 	},
 	function(err, result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Datos de programa académico actualizados'});
@@ -177,9 +199,9 @@ router.put('/programaA/:id', (req, res, next)=>{
 });
 
 router.delete('/programaA/:id', (req, res, next)=>{
-	programaA.remove({_id: req.params.id}, function(err,result){
+	programa.remove({_id: req.params.id}, function(err,result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Programa académico eliminado'});
@@ -187,19 +209,16 @@ router.delete('/programaA/:id', (req, res, next)=>{
 	})
 });
 
-
-
-
 //----------------------------------------------------------------------------------------
 //MALLAS CURRICULARES
 //----------------------------------------------------------------------------------------
 
-const mallaC = require('../model/mallaCurricular');
+const malla = require('../model/mallas');
 
-router.get('/mallasC', (req, res, next)=>{
-	mallaC.find(function(err, mallas){
+router.get('/mallas', (req, res, next)=>{
+	malla.find(function(err, mallas){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json(mallas);
@@ -207,16 +226,17 @@ router.get('/mallasC', (req, res, next)=>{
 	});
 });
 
-router.post('/mallaC', (req, res, next)=>{
-	let newMallaC = new mallaC({
+router.post('/malla', (req, res, next)=>{
+	let newMalla = new malla({
+		_id: req.body._id,
+        materias: req.body.materias,
 		numeroPlan: req.body.numeroPlan,
         anho: req.body.anho,
-		idProgA: req.body.idProgA,
-        materias: req.body.materias
+		codigoProgr: req.body.codigoProgr
 	});
-	newMallaC.save((err, result)=>{
+	newMalla.save((err, result)=>{
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Malla curricular agregada'});
@@ -224,18 +244,18 @@ router.post('/mallaC', (req, res, next)=>{
 	})
 });
 
-router.put('/mallaC/:id', (req, res, next)=>{
-	mallaC.findOneAndUpdate({_id: req.params.id},{
+router.put('/malla/:id', (req, res, next)=>{
+	malla.findOneAndUpdate({_id: req.params.id},{
 		$set:{
-    		numeroPlan: req.body.numeroPlan,
-            anho: req.body.anho,
-            idProgA: req.body.idProgA,
-            materias: req.body.materias
+			materias: req.body.materias,
+			numeroPlan: req.body.numeroPlan,
+			anho: req.body.anho,
+			codigoProgr: req.body.codigoProgr
 		}
 	},
 	function(err, result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Datos de malla curricular actualizados'});
@@ -243,10 +263,10 @@ router.put('/mallaC/:id', (req, res, next)=>{
 	})
 });
 
-router.delete('/mallaC/:id', (req, res, next)=>{
-	mallaC.remove({_id: req.params.id}, function(err,result){
+router.delete('/malla/:id', (req, res, next)=>{
+	malla.remove({_id: req.params.id}, function(err,result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Malla curricular eliminada'});
@@ -254,18 +274,16 @@ router.delete('/mallaC/:id', (req, res, next)=>{
 	})
 });
 
-
-
 //----------------------------------------------------------------------------------------
 //MATERIAS
 //----------------------------------------------------------------------------------------
 
-const materia = require('../model/materia');
+const materia = require('../model/materias');
 
 router.get('/materias', (req, res, next)=>{
 	materia.find(function(err, mats){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json(mats);
@@ -275,15 +293,14 @@ router.get('/materias', (req, res, next)=>{
 
 router.post('/materia', (req, res, next)=>{
 	let newMateria = new materia({
-		nombre: req.body.nombre,
+		_id: req.body._id,
+		materia: req.body.materia,
         codigo: req.body.codigo,
-		idEsc: req.body.idEsc,
-        requisitos: req.body.requisitos,
-        corequisitos: req.body.corequisitos
+		idEsc: req.body.idEsc
 	});
 	newMateria.save((err, result)=>{
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Materia agregada'});
@@ -294,16 +311,14 @@ router.post('/materia', (req, res, next)=>{
 router.put('/materia/:id', (req, res, next)=>{
 	materia.findOneAndUpdate({_id: req.params.id},{
 		$set:{
-            nombre: req.body.nombre,
-            codigo: req.body.codigo,
-            idEsc: req.body.idEsc,
-            requisitos: req.body.requisitos,
-            corequisitos: req.body.corequisitos
+			materia: req.body.materia,
+			codigo: req.body.codigo,
+			idEsc: req.body.idEsc
 		}
 	},
 	function(err, result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Datos de materia actualizados'});
@@ -314,7 +329,7 @@ router.put('/materia/:id', (req, res, next)=>{
 router.delete('/materia/:id', (req, res, next)=>{
 	materia.remove({_id: req.params.id}, function(err,result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Materia eliminada'});
@@ -322,18 +337,16 @@ router.delete('/materia/:id', (req, res, next)=>{
 	})
 });
 
-
-
 //----------------------------------------------------------------------------------------
 //CURSOS
 //----------------------------------------------------------------------------------------
 
-const curso = require('../model/curso');
+const curso = require('../model/cursos');
 
 router.get('/cursos', (req, res, next)=>{
 	curso.find(function(err, cursos){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json(cursos);
@@ -343,14 +356,15 @@ router.get('/cursos', (req, res, next)=>{
 
 router.post('/curso', (req, res, next)=>{
 	let newCurso = new curso({
+		_id: req.body._id,
 		semestre: req.body.semestre,
         anho: req.body.anho,
-		idMateria: req.body.idMateria,
+		codigoMateria: req.body.codigoMateria,
         grupos: req.body.grupos
     });
 	newCurso.save((err, result)=>{
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Curso agregado'});
@@ -361,15 +375,15 @@ router.post('/curso', (req, res, next)=>{
 router.put('/curso/:id', (req, res, next)=>{
 	curso.findOneAndUpdate({_id: req.params.id},{
 		$set:{
-            semestre: req.body.semestre,
-            anho: req.body.anho,
-            idMateria: req.body.idMateria,
-            grupos: req.body.grupos
+			semestre: req.body.semestre,
+			anho: req.body.anho,
+			codigoMateria: req.body.codigoMateria,
+			grupos: req.body.grupos
 		}
 	},
 	function(err, result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Datos de curso actualizados'});
@@ -380,7 +394,7 @@ router.put('/curso/:id', (req, res, next)=>{
 router.delete('/curso/:id', (req, res, next)=>{
 	curso.remove({_id: req.params.id}, function(err,result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Curso eliminado'});
@@ -389,17 +403,16 @@ router.delete('/curso/:id', (req, res, next)=>{
 });
 
 
-
 //----------------------------------------------------------------------------------------
 //GRUPOS
 //----------------------------------------------------------------------------------------
 
-const grupo = require('../model/grupo');
+const grupo = require('../model/grupos');
 
 router.get('/grupos', (req, res, next)=>{
 	grupo.find(function(err, grupos){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json(grupos);
@@ -409,14 +422,16 @@ router.get('/grupos', (req, res, next)=>{
 
 router.post('/grupo', (req, res, next)=>{
 	let newGrupo = new grupo({
-		numGrupo: req.body.numGrupo,
+		_id: req.body._id,
+		numeroGrupo: req.body.numeroGrupo,
+		codigoProfe: req.body.codigoProfe,
         horario: req.body.horario,
-		profesor: req.body.profesor,
-        estudiantes: req.body.estudiantes
+        estudiantes: req.body.estudiantes,
+		idCurso: req.body.idCurso
     });
 	newGrupo.save((err, result)=>{
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Grupo agregado'});
@@ -427,15 +442,16 @@ router.post('/grupo', (req, res, next)=>{
 router.put('/grupo/:id', (req, res, next)=>{
 	grupo.findOneAndUpdate({_id: req.params.id},{
 		$set:{
-            numGrupo: req.body.numGrupo,
-            horario: req.body.horario,
-            profesor: req.body.profesor,
-            estudiantes: req.body.estudiantes
+			numeroGrupo: req.body.numeroGrupo,
+			codigoProfe: req.body.codigoProfe,
+			horario: req.body.horario,
+			estudiantes: req.body.estudiantes,
+			idCurso: req.body.idCurso
 		}
 	},
 	function(err, result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Datos de grupo actualizados'});
@@ -446,7 +462,7 @@ router.put('/grupo/:id', (req, res, next)=>{
 router.delete('/grupo/:id', (req, res, next)=>{
 	grupo.remove({_id: req.params.id}, function(err,result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Grupo eliminado'});
@@ -454,17 +470,16 @@ router.delete('/grupo/:id', (req, res, next)=>{
 	})
 });
 
-
 //----------------------------------------------------------------------------------------
 //ESTUDIANTES
 //----------------------------------------------------------------------------------------
 
-const estudiante = require('../model/estudiante');
+const estudiante = require('../model/estudiantes');
 
 router.get('/estudiantes', (req, res, next)=>{
 	estudiante.find(function(err, ests){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json(ests);
@@ -474,6 +489,7 @@ router.get('/estudiantes', (req, res, next)=>{
 
 router.post('/estudiante', (req, res, next)=>{
 	let newEstudiante = new estudiante({
+		_id: req.body._id,
 		nombre: req.body.nombre,
 		carnet: req.body.carnet,
         idInst: req.body.idInst,
@@ -483,7 +499,7 @@ router.post('/estudiante', (req, res, next)=>{
 	});
 	newEstudiante.save((err, result)=>{
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Estudiante agregado'});
@@ -504,7 +520,7 @@ router.put('/estudiante/:id', (req, res, next)=>{
 	},
 	function(err, result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Datos de estudiante actualizados'});
@@ -515,7 +531,7 @@ router.put('/estudiante/:id', (req, res, next)=>{
 router.delete('/estudiante/:id', (req, res, next)=>{
 	estudiante.remove({_id: req.params.id}, function(err,result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Estudiante eliminado'});
@@ -523,18 +539,16 @@ router.delete('/estudiante/:id', (req, res, next)=>{
 	})
 });
 
-
-
 //----------------------------------------------------------------------------------------
 //PROFESORES
 //----------------------------------------------------------------------------------------
 
-const profesor = require('../model/profesor');
+const profesor = require('../model/profesores');
 
 router.get('/profesores', (req, res, next)=>{
 	profesor.find(function(err, profs){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json(profs);
@@ -544,15 +558,16 @@ router.get('/profesores', (req, res, next)=>{
 
 router.post('/profesor', (req, res, next)=>{
 	let newProfesor = new profesor({
-		nombre: req.body.nombre,
+		_id: req.body._id,
+		profesor: req.body.profesor,
         carnetProf: req.body.carnetProf,
         codigoInst: req.body.codigoInst,
-        //codigoEsc: req.body.codigoEsc,
+        codigoEsc: req.body.codigoEsc,
 		password: req.body.password
 	});
 	newProfesor.save((err, result)=>{
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Profesor agregado'});
@@ -563,16 +578,16 @@ router.post('/profesor', (req, res, next)=>{
 router.put('/profesor/:id', (req, res, next)=>{
 	profesor.findOneAndUpdate({_id: req.params.id},{
 		$set:{
-			nombre: req.body.nombre,
-            carnetProf: req.body.carnetProf,
-            codigoInst: req.body.codigoInst,
-            //codigoEsc: req.body.codigoEsc,
-            password: req.body.password		
+			profesor: req.body.profesor,
+			carnetProf: req.body.carnetProf,
+			codigoInst: req.body.codigoInst,
+			codigoEsc: req.body.codigoEsc,
+			password: req.body.password
 		}
 	},
 	function(err, result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Datos de profesor actualizados'});
@@ -583,7 +598,7 @@ router.put('/profesor/:id', (req, res, next)=>{
 router.delete('/profesor/:id', (req, res, next)=>{
 	profesor.remove({_id: req.params.id}, function(err,result){
 		if(err){
-			res.json(err);
+			return next(err);
 		}
 		else{
 			res.json({msg: 'Profesor eliminado'});
@@ -591,6 +606,5 @@ router.delete('/profesor/:id', (req, res, next)=>{
 	})
 });
 
-
-
 module.exports = router;
+
