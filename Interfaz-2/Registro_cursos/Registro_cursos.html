@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu_Institucion</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="assets/css/Header--Menu--Sections.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body style="height:800px;">
+    <div>
+        <div class="header-dark">
+            <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+                <div class="container"><a class="navbar-brand" href="#">Sistema Matrícula</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse"
+                        id="navcol-1">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" id="menu_reg">Opciones Registro</a>
+                                <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#" id="menuItem_prof">Registrar Profesor</a><a class="dropdown-item" role="presentation" href="#" id="menuItem_estudiante">Registrar Estudiante</a><a class="dropdown-item"
+                                        role="presentation" href="#" id="menuItem_materia">Registrar Materia</a><a class="dropdown-item" role="presentation" href="#" id="menuItem_escuela">Registro de Escuela</a></div>
+                            </li>
+                        </ul>
+                        <form class="form-inline mr-auto" target="_self"><span></span></form><a class="btn btn-light action-button" role="button" href="#" id="btn_salir">Salir</a></div>
+                </div>
+            </nav>
+            <div class="container hero">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <h1 class="text-center">Registro de Cursos</h1>
+                        <div class="form-group">
+                            <form><input class="form-control" type="text" placeholder="Materia" id="materia_input"></form>
+                            <form style="margin-top:10px;"><input class="form-control" type="text" placeholder="Semestre" id="semestre_input"></form>
+                            <form style="margin-top:10px;"><input class="form-control" type="text" placeholder="Año" id="anio_input"></form>
+                            <form style="margin-top:10px;"><button class="btn btn-outline-primary btn-block" type="button" id="btn_guardar_curso" style="color:rgb(255,255,255);">Guardar</button></form>
+                        </div>
+                        <h1 class="text-center" style="margin-top:50px;margin-bottom:20px;">Registro de Grupos</h1>
+                        <div class="form-group">
+                            <form><input class="form-control" type="text" placeholder="Curso" id="curso_input"></form>
+                            <form style="margin-top:10px;"><input class="form-control" type="text" placeholder="Numero de grupo" id="numero_grupo_input"></form>
+                            <form style="margin-top:10px;"><input class="form-control" type="text" placeholder="Profesor" id="codigo_profe_input"></form>
+                            <form style="margin-top:10px;"><button class="btn btn-outline-primary btn-block" type="button" id="btn_guardar_grupo" style="color:rgb(255,255,255);">Guardar</button></form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

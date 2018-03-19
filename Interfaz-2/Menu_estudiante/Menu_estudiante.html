@@ -13,7 +13,7 @@
 
 <body>
     <div>
-        <div class="header-dark">
+        <div class="header-dark" style="height:995px;">
             <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
                 <div class="container"><a class="navbar-brand" href="#">Sistema de Matrícula</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                     <div
@@ -26,16 +26,13 @@
         <div class="container hero">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <h1 class="text-center">Matrícular</h1>
+                    <h1 class="text-center">Matricular</h1>
                     <div class="form-group">
                         <form><input class="form-control" type="text" placeholder="Carné " id="carne_input"></form>
-                        <form style="margin-top:10px;"><select class="form-control" id="select_institution"><optgroup label="Institución"><option value="12" selected="">Institución 1</option><option value="13">Institución 2</option><option value="14">Institución 3</option></optgroup></select></form>
-                        <form
-                            style="margin-top:10px;"><select class="form-control" id="select_escuela"><optgroup label="Escuela"><option value="12" selected="">Escuela 1</option><option value="13">Escuela 2</option><option value="14">Escuela 3</option></optgroup></select></form>
-                            <form
-                                style="margin-top:10px;"><select class="form-control" id="select_curso"><optgroup label="Curso"><option value="12" selected="">Curso 1</option><option value="13">Curso 2</option><option value="14">Curso 3</option></optgroup></select></form>
-                                <form style="margin-top:10px;"><select class="form-control" id="select_grupo"><optgroup label="Grupo"><option value="12" selected="">Grupo 1</option><option value="13">Grupo 2</option></optgroup></select></form>
-                                <form style="margin-top:10px;"><button class="btn btn-outline-primary btn-block" type="button" id="btn_matricular" style="color:rgb(255,255,255);">Matrícular</button></form>
+                        <form style="margin-top:10px;"><input class="form-control" type="text" required="" placeholder="Materia" id="materia_input"></form>
+                        <form style="margin-top:10px;"><input class="form-control" type="text" placeholder="Curso" id="curso_input"></form>
+                        <form style="margin-top:10px;"><input class="form-control" type="text" required="" placeholder="Grupo" id="grupo_input"></form>
+                        <form style="margin-top:10px;"><button class="btn btn-outline-primary btn-block" type="button" id="btn_matricular" style="color:rgb(255,255,255);">Matrícular</button></form>
                     </div>
                 </div>
             </div>

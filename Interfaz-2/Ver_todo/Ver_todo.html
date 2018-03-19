@@ -6,20 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/Animated-Type-Heading.css">
-    <link rel="stylesheet" href="assets/css/Bold-BS4-Pricing-Table-Style-48.css">
-    <link rel="stylesheet" href="assets/css/Bold-BS4-Pricing-Table-Style-481.css">
-    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
 </head>
 
 <body style="background-color:rgb(0,0,0);">
     <div style="color:rgb(61,61,61);">
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color:rgb(61,61,61);color:rgb(49,49,49);">
-            <div class="container"><a class="navbar-brand" href="#" style="color:rgb(0,0,0);">Sistema de matrícula</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="container"><a class="navbar-brand" href="#" style="color:#eeeeee;">Sistema de matrícula</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div
                     class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav mr-auto"></ul><span class="navbar-text actions" id="btn_salir"> <a href="#" class="login" style="color:rgb(0,0,0);">Volver</a></span></div>
+                    <ul class="nav navbar-nav mr-auto"></ul><span class="navbar-text actions" id="btn_salir"> <a href="#" class="login" style="color:#eeeeee;">Volver</a></span></div>
     </div>
     </nav>
     </div>
@@ -80,9 +76,69 @@
             </div>
         </div>
     </div>
+    <div>
+        <div class="row">
+            <div class="col" style="width:300px;">
+                <div class="form-group" style="width:500px;">
+                    <form>
+                        <h1 style="color:#eeeeee;margin-left:30px;">Eliminar</h1>
+                    </form>
+                    <form style="width:500px;">
+                        <div class="form-row">
+                            <div class="col" style="width:200px;"><input class="form-control" type="text" placeholder="Institución" id="binstitucion_input" style="width:200px;margin-left:30px;"></div>
+                            <div class="col"><button class="btn btn-primary" type="button" id="btn_binstitucion" style="background-color:#333333;border-color:#333333;">Borrar</button></div>
+                        </div>
+                    </form>
+                    <form style="width:500px;margin-top:10px;">
+                        <div class="form-row">
+                            <div class="col" style="width:200px;"><input class="form-control" type="text" placeholder="Escuela" id="bescuela_input" style="width:200px;margin-left:30px;"></div>
+                            <div class="col"><button class="btn btn-primary" type="button" id="btn_bescuela" style="background-color:#333333;border-color:#333333;">Borrar</button></div>
+                        </div>
+                    </form>
+                    <form style="width:500px;margin-top:10px;">
+                        <div class="form-row">
+                            <div class="col" style="width:200px;"><input class="form-control" type="text" placeholder="Malla" id="bmalla_input" style="width:200px;margin-left:30px;"></div>
+                            <div class="col"><button class="btn btn-primary" type="button" id="btn_bmalla" style="background-color:#333333;border-color:#333333;">Borrar</button></div>
+                        </div>
+                    </form>
+                    <form style="width:500px;margin-top:10px;">
+                        <div class="form-row">
+                            <div class="col" style="width:200px;"><input class="form-control" type="text" placeholder="Programa" id="bprograma_input" style="width:200px;margin-left:30px;"></div>
+                            <div class="col"><button class="btn btn-primary" type="button" id="btn_bprograma" style="background-color:#333333;border-color:#333333;">Borrar</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col" style="width:500px;margin-top:50px;margin-left:-300px;">
+                <div class="form-group" style="width:500px;">
+                    <form>
+                        <h1 style="color:rgb(195,195,195);margin-left:30px;"></h1>
+                    </form>
+                    <form style="width:500px;">
+                        <div class="form-row">
+                            <div class="col" style="width:200px;"><input class="form-control" type="text" placeholder="Materia" id="bmateria_input" style="width:200px;margin-left:30px;"></div>
+                            <div class="col"><button class="btn btn-primary" type="button" id="btn_bmateria" style="background-color:#333333;border-color:#333333;">Borrar</button></div>
+                        </div>
+                    </form>
+                    <form style="width:500px;margin-top:10px;">
+                        <div class="form-row">
+                            <div class="col" style="width:200px;"><input class="form-control" type="text" placeholder="Curso" id="bcurso_input" style="width:200px;margin-left:30px;"></div>
+                            <div class="col"><button class="btn btn-primary" type="button" id="btn_bcurso" style="background-color:#333333;border-color:#333333;">Borrar</button></div>
+                        </div>
+                    </form>
+                    <form style="width:500px;margin-top:10px;">
+                        <div class="form-row">
+                            <div class="col" style="width:200px;"><input class="form-control" type="text" placeholder="Grupo" id="bgrupo_input" style="width:200px;margin-left:30px;"></div>
+                            <div class="col"><button class="btn btn-primary" type="button" id="btn_bgrupo" style="background-color:#333333;border-color:#333333;">Borrar</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/Animated-Type-Heading.js"></script>
+    <script src="assets/js/script.min.js"></script>
 </body>
 
 </html>
