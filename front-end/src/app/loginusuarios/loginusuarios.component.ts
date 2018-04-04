@@ -29,6 +29,26 @@ export class LoginusuariosComponent implements OnInit {
 			//console.log(this.profesores);
 		});
 	}
+	
+	validarUsuario(form){
+		console.log(form.value.tipo);
+		if (form.value.tipo == "1"){
+			for (var i = 0; i < this.estudiantes.length; i++){
+				console.log("i="+this.estudiantes[i].carnet+"vs."form.value.carnet);
+				if (this.estudiantes[i].carnet == form.value.carnet && this.estudiantes[i].password == form.value.password){
+					console.log("Estudiante existe")
+				}
+			}
+		}
+		else{
+			for (var i = 0; i < this.profesores.length; i++){
+				if (this.profesores[i].carnetprof == form.value.carnet && this.profesores[i].password == form.value.password){
+					console.log("Profesor existe")
+				}
+			}			
+		}
+		console.log("Fuera");
+	}
 
   
   ngOnInit() {
