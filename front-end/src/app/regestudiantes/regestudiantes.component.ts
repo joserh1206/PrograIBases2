@@ -16,12 +16,14 @@ export class RegestudiantesComponent implements OnInit {
   instituciones: Institucion[];
   escuelas: Escuela[];
   programas: Programa[];
+  lenArray: number;
   
   constructor(private dataService: DataService) {  }
   
     listarInstituciones(){
       this.dataService.listarInstituciones().subscribe( insts => {
           this.instituciones = insts;
+		  this.lenArray = this.instituciones.length;
           //console.log(this.instituciones);
 	  });
 	}
@@ -42,13 +44,15 @@ export class RegestudiantesComponent implements OnInit {
 
 	registrarEstudiante(form){
       let nuevoEstudiante: Estudiante = {
-          nombre: form.value.nombre,
+		  _id: this.lenArray,
+		  nombre: form.value.nombre,
           carnet: form.value.carnet,
           idInst: form.value.idInst,
           idEsc: form.value.idEsc,
           idProgA: form.value.idProgA,
           password: form.value.password
       }
+	  console.log(this.lenArray);
       this.dataService.registrarEstudiante(nuevoEstudiante).subscribe(est =>{
           console.log(est);
       })
