@@ -1,7 +1,7 @@
 export class Profesor{
 	_id?: number;
 	profesor: string;
-    carnetprof: number;
+    carnet: number;
     codigoinst: number;
     codigoesc: number;
     password: string;
