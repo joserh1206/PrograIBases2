@@ -15,8 +15,9 @@ export class LoginusuariosComponent implements OnInit {
 
     estudiantes: Estudiante[];
     profesores: Profesor[];
-
-    listarEstudiantes(){
+	model = new Estudiante();
+	
+	listarEstudiantes(){
       this.dataService.listarEstudiantes().subscribe( ests => {
           this.estudiantes = ests;
           //console.log(this.estudiantes);
@@ -31,21 +32,16 @@ export class LoginusuariosComponent implements OnInit {
 	}
 	
 	validarUsuario(form){
-		console.log(form.value.tipo);
-		if (form.value.tipo == "1"){
-			for (var i = 0; i < this.estudiantes.length; i++){
-				console.log("i="+this.estudiantes[i].carnet+"vs."form.value.carnet);
-				if (this.estudiantes[i].carnet == form.value.carnet && this.estudiantes[i].password == form.value.password){
-					console.log("Estudiante existe")
-				}
+		console.log(form.value.carnet);
+		for (var i = 0; i < this.estudiantes.length; i++){
+			if (this.estudiantes[i].carnet == form.value.carnet && this.estudiantes[i].password == form.value.password){
+				console.log("Estudiante existe");
 			}
 		}
-		else{
-			for (var i = 0; i < this.profesores.length; i++){
-				if (this.profesores[i].carnetprof == form.value.carnet && this.profesores[i].password == form.value.password){
-					console.log("Profesor existe")
-				}
-			}			
+		for (var i = 0; i < this.profesores.length; i++){
+			if (this.profesores[i].carnet == form.value.carnet && this.profesores[i].password == form.value.password){
+				console.log("Profesor existe");
+			}
 		}
 		console.log("Fuera");
 	}

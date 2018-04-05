@@ -10,17 +10,10 @@
 <body>
     <div class="login-dark">
         <form #frm="ngForm" (ngSubmit)="validarUsuario(frm)">
-            <h2 class="sr-only">Login Form</h2>
-            <div class="illustration">
-				<i class="icon ion-ios-locked-outline"></i>
-			</div>
-            <div class="form-group"><input class="form-control" type="text" ng-model="carnet" placeholder="Carnet/ID" id="carnet_input"></div>
             <div class="form-group">
-				<input class="form-control" type="password" ng-model="password" placeholder="Contraseña" id="pass_input">
-			</div>
+				<input class="form-control" type="text" [(ngModel)]="model.carnet" name="carnet" placeholder="Carnet/ID" id="carnet_input"></div>
             <div class="form-group">
-				<input class="form-control" type="text" ng-model="tipo" placeholder="ID de tipo de usuario" id="tipo_input">
-				1. Estudiante / 2. Profesor
+				<input class="form-control" type="password" [(ngModel)]="model.password" name="password" placeholder="Contraseña" id="pass_input">
 			</div>
             <div class="form-group">
 				<button class="btn btn-primary btn-block" type="submit" id="btn_ingresar">Ingresar</button>
