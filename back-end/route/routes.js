@@ -1,29 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-/*
-const counter = require('../model/counters');
-
-function getNextSequenceValue(id, path){
-	router.put(path, (req, res, next)=>{
-		counter.findOneAndUpdate({_id: id}, {
-			$set:{
-				update: {$inc:{sequence_value:1}}
-			}
-		},
-		(err, cnt)=>{
-			if(err){
-				return next(err);
-			}
-			else{
-				res.send(cnt);
-				return cnt.sequence_value;
-			}
-		});
-	});
-}
-*/
-
 //----------------------------------------------------------------------------------------
 //INSTITUCIONES
 //----------------------------------------------------------------------------------------
@@ -560,7 +537,7 @@ router.post('/profesor', (req, res, next)=>{
 	let newProfesor = new profesor({
 		_id: req.body._id,
 		profesor: req.body.profesor,
-        carnetProf: req.body.carnetProf,
+        carnet: req.body.carnet,
         codigoInst: req.body.codigoInst,
         codigoEsc: req.body.codigoEsc,
 		password: req.body.password
@@ -579,7 +556,7 @@ router.put('/profesor/:id', (req, res, next)=>{
 	profesor.findOneAndUpdate({_id: req.params.id},{
 		$set:{
 			profesor: req.body.profesor,
-			carnetProf: req.body.carnetProf,
+			carnet: req.body.carnet,
 			codigoInst: req.body.codigoInst,
 			codigoEsc: req.body.codigoEsc,
 			password: req.body.password
